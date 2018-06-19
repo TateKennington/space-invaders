@@ -9,16 +9,19 @@ namespace SpaceInvaders
 {
     class GameObject
     {
-        Rectangle Transform;
+        protected Rectangle Transform;
+        bool alive;
 
         public GameObject()
         {
             Transform = new Rectangle(0, 0, 0, 0);
+            alive = false;
         }
 
         public GameObject(int x, int y, int width, int height)
         {
             Transform = new Rectangle(x, y, width, height);
+            alive = false;
         }
 
         public virtual void Tick() { }
@@ -32,6 +35,22 @@ namespace SpaceInvaders
         {
             Transform.X += dx;
             Transform.Y += dy;
+        }
+
+        public bool IsAlive()
+        {
+            return alive;
+        }
+        
+        public void SetAlive(bool _alive)
+        {
+            alive = _alive;
+        }
+
+        public void SetPosition(int x, int y)
+        {
+            Transform.X = x;
+            Transform.Y = y;
         }
     }
 }

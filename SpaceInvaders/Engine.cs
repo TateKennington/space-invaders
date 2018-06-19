@@ -14,13 +14,20 @@ namespace SpaceInvaders
         Bitmap backBuffer = new Bitmap(3840,2160);
         Graphics backBufferGraphics;
         List<GameObject> gameObjects = new List<GameObject>();
-        Mothership mship = new Mothership(0,1800,100,100);
+        Mothership mship;
 
         public Engine( Graphics _g)
         {
             g = _g;
-            gameObjects.Add(mship);
             backBufferGraphics = Graphics.FromImage(backBuffer);
+            Missile[] missiles = new Missile[15];
+            for(int i = 0; i<15; i++)
+            {
+                missiles[i] = new Missile(0,0,100,100);
+                gameObjects.Add(missiles[i]);
+            }
+            mship = new Mothership(2000,1800,100,100,missiles);
+            gameObjects.Add(mship);
         }
 
         public void SetGraphics(Graphics _g)
