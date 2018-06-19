@@ -10,11 +10,15 @@ namespace SpaceInvaders
     class Engine
     {
         Graphics g;
-        int t;
+        Bitmap backBuffer = new Bitmap(3840,2160);
+        Graphics backBufferGraphics;
+        List<GameObject> gameObjects = new List<GameObject>();
 
-        public Engine()
+        public Engine( Graphics _g)
         {
-            t = 0;
+            g = _g;
+            gameObjects.Add(new GameObject(0,0,100,100));
+            backBufferGraphics = Graphics.FromImage(backBuffer);
         }
 
         public void SetGraphics(Graphics _g)
@@ -24,12 +28,20 @@ namespace SpaceInvaders
 
         public void Tick()
         {
-
+            foreach(GameObject gameObject in gameObjects)
+            {
+                gameObject.Tick();
+            }
         }
 
         public void Render()
         {
-            g.Clear(Color.Black);
+            backBufferGraphics.Clear(Color.Black);
+            foreach (GameObject gameObject in gameObjects)
+            {
+                gameObject.Render(backBufferGraphics);
+            }
+            g.DrawImage(backBuffer, 0, 0, 1024, 576);
         }
     }
 }

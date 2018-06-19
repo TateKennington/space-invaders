@@ -17,8 +17,7 @@ namespace SpaceInvaders
         public Form1()
         {
             InitializeComponent();
-            game = new Engine();
-            game.SetGraphics(this.CreateGraphics());
+            game = new Engine(this.CreateGraphics());
             timer1.Start();
         }
 
