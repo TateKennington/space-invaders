@@ -14,6 +14,8 @@ namespace SpaceInvaders
 
         public override void Tick()
         {
+            if (!IsAlive()) return;
+
             Move(0, -30);
             if (Transform.Y < -100)
             {

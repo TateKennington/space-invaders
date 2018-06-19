@@ -12,22 +12,24 @@ namespace SpaceInvaders
         protected Rectangle Transform;
         bool alive;
 
-        public GameObject()
+        public GameObject(bool _alive = false)
         {
             Transform = new Rectangle(0, 0, 0, 0);
-            alive = false;
+            alive = _alive;
         }
 
-        public GameObject(int x, int y, int width, int height)
+        public GameObject(int x, int y, int width, int height, bool _alive = false)
         {
             Transform = new Rectangle(x, y, width, height);
-            alive = false;
+            alive = _alive;
         }
 
         public virtual void Tick() { }
 
         public void Render(Graphics g)
         {
+            if (!alive) return;
+
             g.DrawRectangle(new Pen(Color.White), Transform);
         }
 
