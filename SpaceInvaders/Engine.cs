@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SpaceInvaders
 {
@@ -13,11 +14,12 @@ namespace SpaceInvaders
         Bitmap backBuffer = new Bitmap(3840,2160);
         Graphics backBufferGraphics;
         List<GameObject> gameObjects = new List<GameObject>();
+        Mothership mship = new Mothership(0,1800,100,100);
 
         public Engine( Graphics _g)
         {
             g = _g;
-            gameObjects.Add(new GameObject(0,0,100,100));
+            gameObjects.Add(mship);
             backBufferGraphics = Graphics.FromImage(backBuffer);
         }
 
@@ -32,6 +34,11 @@ namespace SpaceInvaders
             {
                 gameObject.Tick();
             }
+        }
+
+        public void KeyHandler(Keys k)
+        {
+            mship.KeyHandler(k);
         }
 
         public void Render()

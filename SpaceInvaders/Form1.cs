@@ -26,5 +26,10 @@ namespace SpaceInvaders
             game.Tick();
             game.Render();
         }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            game.KeyHandler(e.KeyCode);
+        }
     }
 }
