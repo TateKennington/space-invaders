@@ -12,7 +12,7 @@ namespace SpaceInvaders
 {
     public partial class Form1 : Form
     {
-        Engine game;
+        Engine game; //The game engine
 
         public Form1()
         {
@@ -23,12 +23,14 @@ namespace SpaceInvaders
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            //Update the game state, then render
             game.Tick();
             game.Render();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            //Pas input information to the game engine
             game.KeyHandler(e.KeyCode);
         }
     }
