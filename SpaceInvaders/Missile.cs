@@ -17,6 +17,15 @@ namespace SpaceInvaders
         public Missile() : base(){}
         public Missile(int x, int y, int width, int height) : base(x, y, width, height){}
 
+        public override void OnCollide(GameObject other)
+        {
+            if (other.getObjectType() == 0)
+            {
+                other.SetAlive(false);
+                SetAlive(false);
+            }
+        }
+
         //Updates the missiles state by one step
         public override void Tick()
         {

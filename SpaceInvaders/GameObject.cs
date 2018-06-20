@@ -13,7 +13,8 @@ namespace SpaceInvaders
     class GameObject
     {
         protected Rectangle Transform; //The objects position and size information
-        bool alive; //Life flag
+        protected bool alive; //Life flag
+        protected int ObjectType; //Object type flag
 
         /**
         Default constructor.
@@ -23,6 +24,7 @@ namespace SpaceInvaders
         {
             Transform = new Rectangle(0, 0, 0, 0);
             alive = _alive;
+            ObjectType = -1;
         }
 
         /**
@@ -37,12 +39,24 @@ namespace SpaceInvaders
         {
             Transform = new Rectangle(x, y, width, height);
             alive = _alive;
+            ObjectType = -1;
         }
 
         /**
         Updates the gameobject by one step.
         */
         public virtual void Tick() { }
+
+        public virtual void OnCollide(GameObject other) { }
+
+        /**
+        Returns whether or not two objects are alive and colliding.
+        other: The object to check collision with.
+        */
+        public bool Collides(GameObject other)
+        {
+            return alive && other.alive && Transform.IntersectsWith(other.Transform);
+        }
 
         /**
         Renders the object to a given context.
@@ -80,6 +94,11 @@ namespace SpaceInvaders
         public void SetAlive(bool _alive)
         {
             alive = _alive;
+        }
+
+        public int getObjectType()
+        {
+            return ObjectType;
         }
 
         /**

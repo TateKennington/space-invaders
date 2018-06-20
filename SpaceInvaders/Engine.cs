@@ -38,6 +38,12 @@ namespace SpaceInvaders
                 gameObjects.Add(missiles[i]);
             }
 
+            //Test enemies
+            for(int i = 0; i<10; i++)
+            {
+                gameObjects.Add(new EnemyShip(i * 300, 1000, 100, 100));
+            }
+
             //Create the player character
             mship = new Mothership(2000,1800,100,100,missiles);
             gameObjects.Add(mship);
@@ -52,6 +58,28 @@ namespace SpaceInvaders
             foreach(GameObject gameObject in gameObjects)
             {
                 gameObject.Tick();
+            }
+            CheckCollisions();
+        }
+
+        /**
+        Checks all game objects pairwise for collisions.
+        */
+        public void CheckCollisions()
+        {
+            foreach(GameObject g1 in gameObjects)
+            {
+                foreach(GameObject g2 in gameObjects)
+                {
+                    if (g1.Equals(g2)) continue;
+
+                    //If the objects are colliding call their collision handlers
+                    if (g1.Collides(g2))
+                    {
+                        g1.OnCollide(g2);
+                        g2.OnCollide(g1);
+                    }
+                }
             }
         }
 
