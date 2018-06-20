@@ -16,10 +16,12 @@ namespace SpaceInvaders
         int y;
         int Rows;
         int Columns;
+        int Direction;
         EnemyShip[][] EnemyShips;
 
         public Fleet(int _x, int _y, int _Rows, int _Columns) : base()
         {
+            Direction = 1;
             alive = true;
             ObjectType = eType.Enemy;
             x = _x;
@@ -52,13 +54,15 @@ namespace SpaceInvaders
 
         public override void Tick()
         {
+            if (x<0 || x + 200 * Columns > 3940) Direction *= -1;
             foreach (EnemyShip[] row in EnemyShips)
             {
                 foreach (EnemyShip enemyShip in row)
                 {
-                    enemyShip.Move(20,0);
+                    enemyShip.Move(Direction*20,0);
                 }
             }
+            x += Direction*20;
         }
 
         //public override void Render(Graphics g)
