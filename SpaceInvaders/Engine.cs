@@ -38,11 +38,11 @@ namespace SpaceInvaders
                 gameObjects.Add(missiles[i]);
             }
 
-            //Test enemies
-            for(int i = 0; i<10; i++)
-            {
-                gameObjects.Add(new EnemyShip(i * 300, 1000, 100, 100));
-            }
+            //Test fleet
+            Fleet test = new Fleet(0, 0, 5, 5);
+            gameObjects.Add(test);
+            gameObjects.AddRange(test.GetShips());
+
 
             //Create the player character
             mship = new Mothership(2000,1800,100,100,missiles);

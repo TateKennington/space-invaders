@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="EnemyShip.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="Fleet.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

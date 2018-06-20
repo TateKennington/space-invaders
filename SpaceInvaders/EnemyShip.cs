@@ -13,7 +13,7 @@ namespace SpaceInvaders
         */
         public EnemyShip() : base()
         {
-            ObjectType = 0;
+            ObjectType = eType.Enemy;
         }
 
         /**
@@ -26,7 +26,7 @@ namespace SpaceInvaders
         */
         public EnemyShip(int x, int y, int width, int height, bool _alive = true) : base(x, y, width, height, _alive)
         {
-            ObjectType = 0;
+            ObjectType = eType.Enemy;
         }
     }
 }

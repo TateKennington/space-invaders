@@ -58,6 +58,9 @@ namespace SpaceInvaders
         */
         public virtual void Tick() { }
 
+        /**
+        Handles the objects behaviour on collision.
+        */
         public virtual void OnCollide(GameObject other) { }
 
         /**
