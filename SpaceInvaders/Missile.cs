@@ -19,7 +19,7 @@ namespace SpaceInvaders
 
         public override void OnCollide(GameObject other)
         {
-            if (other.getObjectType() == 0)
+            if (other.getObjectType() == eType.Enemy)
             {
                 other.SetAlive(false);
                 SetAlive(false);

@@ -12,9 +12,20 @@ namespace SpaceInvaders
     */
     class GameObject
     {
+        /**
+        Types of GameObjects
+        */
+        public enum eType
+        {
+            Default,
+            Mothership,
+            Enemy,
+            Missile
+        }
+
         protected Rectangle Transform; //The objects position and size information
         protected bool alive; //Life flag
-        protected int ObjectType; //Object type flag
+        protected eType ObjectType; //Object type flag       
 
         /**
         Default constructor.
@@ -24,7 +35,7 @@ namespace SpaceInvaders
         {
             Transform = new Rectangle(0, 0, 0, 0);
             alive = _alive;
-            ObjectType = -1;
+            ObjectType = eType.Default;
         }
 
         /**
@@ -39,7 +50,7 @@ namespace SpaceInvaders
         {
             Transform = new Rectangle(x, y, width, height);
             alive = _alive;
-            ObjectType = -1;
+            ObjectType = eType.Default;
         }
 
         /**
@@ -96,7 +107,10 @@ namespace SpaceInvaders
             alive = _alive;
         }
 
-        public int getObjectType()
+        /**
+        Gets the objects type.
+        */
+        public eType getObjectType()
         {
             return ObjectType;
         }
