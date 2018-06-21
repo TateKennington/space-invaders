@@ -18,6 +18,7 @@ namespace SpaceInvaders
         Graphics backBufferGraphics; //Backbuffer rendering context
         List<GameObject> gameObjects; //List of all gameobjects
         Mothership mship; //Player character
+        Missile[] missiles; //References to missiles in the resource pool
 
         /**
         Constructor for the engine.
@@ -31,7 +32,7 @@ namespace SpaceInvaders
             gameObjects = new List<GameObject>();
 
             //Initialize the pool of missiles
-            Missile[] missiles = new Missile[15];
+            missiles = new Missile[15];
             for(int i = 0; i<15; i++)
             {
                 missiles[i] = new Missile(0,0,100,100);
@@ -45,7 +46,7 @@ namespace SpaceInvaders
 
 
             //Create the player character
-            mship = new Mothership(2000,1800,100,100,missiles);
+            mship = new Mothership(2000,1800,100,100);
             gameObjects.Add(mship);
         }
 
@@ -57,7 +58,7 @@ namespace SpaceInvaders
             //Update each game object
             foreach(GameObject gameObject in gameObjects)
             {
-                gameObject.Tick();
+                gameObject.Tick(this);
             }
             CheckCollisions();
         }
@@ -90,7 +91,7 @@ namespace SpaceInvaders
         public void KeyHandler(Keys k)
         {
             //Pass the event information to the mothership
-            mship.KeyHandler(k);
+            mship.KeyHandler(k, this);
         }
 
         /**
@@ -109,6 +110,26 @@ namespace SpaceInvaders
 
             //Draw the backbuffer to the front buffer
             g.DrawImage(backBuffer, 0, 0, 1024, 576);
+        }
+
+        public void SpawnBomb(int x, int y)
+        {
+
+        }
+
+        public void SpawnMissile(int x, int y)
+        {
+            //Consider each missile in the pool
+            foreach (Missile missile in missiles)
+            {
+                //If it is no longer alive claim it
+                if (!missile.Alive)
+                {
+                    missile.Alive = true;
+                    missile.SetPosition(x, y);
+                    break;
+                }
+            }
         }
     }
 }

@@ -56,7 +56,7 @@ namespace SpaceInvaders
         /**
         Updates the gameobject by one step.
         */
-        public virtual void Tick() { }
+        public virtual void Tick(Engine sender) { }
 
         /**
         Handles the objects behaviour on collision.

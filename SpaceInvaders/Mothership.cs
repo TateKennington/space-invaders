@@ -12,8 +12,6 @@ namespace SpaceInvaders
     */
     class Mothership : GameObject
     {
-        Missile[] missiles; //References to missiles in the resource pool
-
         /**
         Default constructor.
         */
@@ -28,16 +26,13 @@ namespace SpaceInvaders
         _missiles: List of references to pooled missiles.
         _alive: Whether the ship is initially alive(default) or dead.
         */
-        public Mothership(int x, int y, int width, int height, Missile[] _missiles, bool _alive = true) : base(x, y, width, height, _alive)
-        {
-            missiles = _missiles;
-        }
+        public Mothership(int x, int y, int width, int height, bool _alive = true) : base(x, y, width, height, _alive){}
 
         /**
         Keyboard input handler.
         k: the input keycode
         */
-        public void KeyHandler(Keys k)
+        public void KeyHandler(Keys k, Engine sender)
         {
             //Move left
             if(k == Keys.Left)
@@ -54,26 +49,16 @@ namespace SpaceInvaders
             //Fire
             if(k == Keys.Up)
             {
-                Fire();
+                Fire(sender);
             }
         }
 
         /**
         Spawns a missile from the resource pool above the mothership.
         */
-        void Fire()
+        void Fire(Engine sender)
         {
-            //Consider each missile in the pool
-            foreach(Missile missile in missiles)
-            {
-                //If it is no longer alive claim it
-                if (!missile.Alive)
-                {
-                    missile.Alive =true;
-                    missile.SetPosition(Transform.X, Transform.Y - 100);
-                    break;
-                }
-            }
+            sender.SpawnMissile(Transform.X, Transform.Y - 100);
         }
     }
 }

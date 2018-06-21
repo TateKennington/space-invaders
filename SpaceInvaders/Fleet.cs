@@ -52,7 +52,7 @@ namespace SpaceInvaders
             return res;
         }
 
-        public override void Tick()
+        public override void Tick(Engine sender)
         {
             if (x<0 || x + 200 * Columns > 3940) Direction *= -1;
             foreach (EnemyShip[] row in EnemyShips)
