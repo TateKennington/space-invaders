@@ -19,6 +19,7 @@ namespace SpaceInvaders
         List<GameObject> gameObjects; //List of all gameobjects
         Mothership mship; //Player character
         Missile[] missiles; //References to missiles in the resource pool
+        List<Bomb> bombs;
 
         /**
         Constructor for the engine.
@@ -39,6 +40,8 @@ namespace SpaceInvaders
                 gameObjects.Add(missiles[i]);
             }
 
+            bombs = new List<Bomb>();
+
             //Test fleet
             Fleet test = new Fleet(0, 0, 5, 5);
             gameObjects.Add(test);
@@ -56,9 +59,9 @@ namespace SpaceInvaders
         public void Tick()
         {
             //Update each game object
-            foreach(GameObject gameObject in gameObjects)
+            for(int i = 0; i<gameObjects.Count; i++)
             {
-                gameObject.Tick(this);
+                gameObjects[i].Tick(this);
             }
             CheckCollisions();
         }
@@ -114,7 +117,18 @@ namespace SpaceInvaders
 
         public void SpawnBomb(int x, int y)
         {
-
+            foreach(Bomb bomb in bombs)
+            {
+                if (!bomb.Alive)
+                {
+                    bomb.Alive = true;
+                    bomb.SetPosition(x, y);
+                    return;
+                }
+            }
+            Bomb b = new Bomb(x, y, 100, 100);
+            bombs.Add(b);
+            gameObjects.Add(b);
         }
 
         public void SpawnMissile(int x, int y)

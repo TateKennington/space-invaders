@@ -8,12 +8,16 @@ namespace SpaceInvaders
 {
     class EnemyShip : GameObject
     {
+
+        public bool CanFire { get; set; }
+
         /**
         Default constructor.
         */
         public EnemyShip() : base()
         {
             ObjectType = eType.Enemy;
+            CanFire = false;
         }
 
         /**
@@ -27,6 +31,12 @@ namespace SpaceInvaders
         public EnemyShip(int x, int y, int width, int height, bool _alive = true) : base(x, y, width, height, _alive)
         {
             ObjectType = eType.Enemy;
+            CanFire = false;
+        }
+
+        public override void Tick(Engine sender)
+        {
+            if(CanFire)sender.SpawnBomb(Transform.X, Transform.Y + 100);
         }
     }
 }

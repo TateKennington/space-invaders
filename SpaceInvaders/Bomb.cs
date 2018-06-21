@@ -14,8 +14,16 @@ namespace SpaceInvaders
         /**
         Constructors
         */
-        public Bomb() : base(){ }
-        public Bomb(int x, int y, int width, int height) : base(x, y, width, height){ }
+        public Bomb() : base()
+        {
+            Alive = true;
+            ObjectType = eType.Enemy;
+        }
+        public Bomb(int x, int y, int width, int height) : base(x, y, width, height)
+        {
+            Alive = true;
+            ObjectType = eType.Enemy;
+        }
 
         public override void OnCollide(GameObject other)
         {
