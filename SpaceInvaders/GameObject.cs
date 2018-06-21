@@ -24,8 +24,8 @@ namespace SpaceInvaders
         }
 
         protected Rectangle Transform; //The objects position and size information
-        protected bool alive; //Life flag
-        protected eType ObjectType; //Object type flag       
+        public bool Alive { get; set; } //Life flag
+        public eType ObjectType { get; set; } //Object type flag       
 
         /**
         Default constructor.
@@ -34,7 +34,7 @@ namespace SpaceInvaders
         public GameObject(bool _alive = false)
         {
             Transform = new Rectangle(0, 0, 0, 0);
-            alive = _alive;
+            Alive = _alive;
             ObjectType = eType.Default;
         }
 
@@ -49,7 +49,7 @@ namespace SpaceInvaders
         public GameObject(int x, int y, int width, int height, bool _alive = false)
         {
             Transform = new Rectangle(x, y, width, height);
-            alive = _alive;
+            Alive = _alive;
             ObjectType = eType.Default;
         }
 
@@ -69,7 +69,7 @@ namespace SpaceInvaders
         */
         public bool Collides(GameObject other)
         {
-            return alive && other.alive && Transform.IntersectsWith(other.Transform);
+            return Alive && other.Alive && Transform.IntersectsWith(other.Transform);
         }
 
         /**
@@ -78,7 +78,7 @@ namespace SpaceInvaders
         */
         public void Render(Graphics g)
         {
-            if (!alive) return;
+            if (!Alive) return;
 
             g.DrawRectangle(new Pen(Color.White), Transform);
         }
@@ -92,30 +92,6 @@ namespace SpaceInvaders
         {
             Transform.X += dx;
             Transform.Y += dy;
-        }
-
-        /**
-        Returns the objects life flag.
-        */
-        public bool IsAlive()
-        {
-            return alive;
-        }
-        
-        /**
-        Sets the objects life flag.
-        */
-        public void SetAlive(bool _alive)
-        {
-            alive = _alive;
-        }
-
-        /**
-        Gets the objects type.
-        */
-        public eType getObjectType()
-        {
-            return ObjectType;
         }
 
         /**

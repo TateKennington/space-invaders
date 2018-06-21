@@ -19,17 +19,17 @@ namespace SpaceInvaders
 
         public override void OnCollide(GameObject other)
         {
-            if (other.getObjectType() == eType.Enemy)
+            if (other.ObjectType == eType.Enemy)
             {
-                other.SetAlive(false);
-                SetAlive(false);
+                other.Alive = false;
+                Alive = false;
             }
         }
 
         //Updates the missiles state by one step
         public override void Tick()
         {
-            if (!IsAlive()) return;
+            if (!Alive) return;
 
             //Move up
             Move(0, -30);
@@ -37,7 +37,7 @@ namespace SpaceInvaders
             //Set the missile to dead if it's off screen
             if (Transform.Y < -100)
             {
-                SetAlive(false);
+                Alive = false;
             }
         }
     }

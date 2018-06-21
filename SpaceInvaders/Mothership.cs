@@ -67,9 +67,9 @@ namespace SpaceInvaders
             foreach(Missile missile in missiles)
             {
                 //If it is no longer alive claim it
-                if (!missile.IsAlive())
+                if (!missile.Alive)
                 {
-                    missile.SetAlive(true);
+                    missile.Alive =true;
                     missile.SetPosition(Transform.X, Transform.Y - 100);
                     break;
                 }

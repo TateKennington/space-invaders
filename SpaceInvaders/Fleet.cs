@@ -22,7 +22,7 @@ namespace SpaceInvaders
         public Fleet(int _x, int _y, int _Rows, int _Columns) : base()
         {
             Direction = 1;
-            alive = true;
+            Alive = true;
             ObjectType = eType.Enemy;
             x = _x;
             y = _y;
