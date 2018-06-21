@@ -13,6 +13,8 @@ namespace SpaceInvaders
     */
     class Engine
     {
+        public static Random rand = new Random();
+
         Graphics g; // Form rendering context 
         Bitmap backBuffer; //Backbuffer image
         Graphics backBufferGraphics; //Backbuffer rendering context

@@ -37,6 +37,10 @@ namespace SpaceInvaders
                     EnemyShips[i][j] = new EnemyShip(x + 200 * i, y + 200 * j, 100, 100);
                 }
             }
+            for(int i = 0; i<Columns; i++)
+            {
+                EnemyShips[i][Rows-1].CanFire = true;
+            }
         }
 
         public List<GameObject> GetShips()
