@@ -70,7 +70,7 @@ namespace SpaceInvaders
                     }
                 }
             }
-            if (left<0 || right > Engine.Height) Direction *= -1;
+            if (left<0 || right > Engine.Width) Direction *= -1;
             foreach (EnemyShip[] row in EnemyShips)
             {
                 foreach (EnemyShip enemyShip in row)

@@ -17,6 +17,14 @@ namespace SpaceInvaders
         public static int Width = 3840;
         public static int Height = 2160;
 
+        enum eState
+        {
+            MainMenu,
+            Playing, 
+            Win,
+            Loss
+        }
+
         Graphics g; // Form rendering context 
         Bitmap backBuffer; //Backbuffer image
         Graphics backBufferGraphics; //Backbuffer rendering context
@@ -24,6 +32,7 @@ namespace SpaceInvaders
         Mothership mship; //Player character
         Missile[] missiles; //References to missiles in the resource pool
         List<Bomb> bombs;
+        eState currentState;
 
         /**
         Constructor for the engine.
@@ -55,6 +64,9 @@ namespace SpaceInvaders
             //Create the player character
             mship = new Mothership(2000,1800,100,100);
             gameObjects.Add(mship);
+
+            currentState = eState.MainMenu;
+
         }
 
         /**
@@ -62,12 +74,15 @@ namespace SpaceInvaders
         */
         public void Tick()
         {
-            //Update each game object
-            for(int i = 0; i<gameObjects.Count; i++)
+            if (currentState == eState.Playing)
             {
-                gameObjects[i].Tick(this);
+                //Update each game object
+                for (int i = 0; i < gameObjects.Count; i++)
+                {
+                    gameObjects[i].Tick(this);
+                }
+                CheckCollisions();
             }
-            CheckCollisions();
         }
 
         /**
@@ -97,10 +112,16 @@ namespace SpaceInvaders
         */
         public void KeyHandler(Keys k)
         {
-            //Pass the event information to the mothership
-            mship.KeyHandler(k, this);
+            if (currentState == eState.MainMenu)
+            {
+                if (k == Keys.Space) currentState = eState.Playing;
+            }
+            if (currentState == eState.Playing)
+            {
+                //Pass the event information to the mothership
+                mship.KeyHandler(k, this);
+            }
         }
-
         /**
         Render and display the current game state
         */
@@ -109,10 +130,19 @@ namespace SpaceInvaders
             //Clear the backbuffer
             backBufferGraphics.Clear(Color.Black);
 
-            //Draw each gameobject
-            foreach (GameObject gameObject in gameObjects)
+            if(currentState == eState.MainMenu)
             {
-                gameObject.Render(backBufferGraphics);
+                backBufferGraphics.DrawString("Press Space to Start", new Font("sans", 100),
+                                               Brushes.White, 0, 0);
+            }
+
+            if (currentState == eState.Playing)
+            {
+                //Draw each gameobject
+                foreach (GameObject gameObject in gameObjects)
+                {
+                    gameObject.Render(backBufferGraphics);
+                }
             }
 
             //Draw the backbuffer to the front buffer
