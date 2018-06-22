@@ -67,6 +67,23 @@ namespace SpaceInvaders
                 }
             }
             x += Direction*20;
+
+            //Set the lowest living ships to fire
+            for(int i = 0; i<Columns; i++)
+            {
+                for(int j = Rows-1; j>=0; j--)
+                {
+                    if (EnemyShips[i][j].Alive)
+                    {
+                        EnemyShips[i][j].CanFire = true;
+                        break;
+                    }
+                    else
+                    {
+                        EnemyShips[i][j].CanFire = false;
+                    }
+                }
+            }
         }
 
         //public override void Render(Graphics g)
