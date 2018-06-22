@@ -35,7 +35,7 @@ namespace SpaceInvaders
             Move(0, -30);
 
             //Set the missile to dead if it's off screen
-            if (Transform.Y < -100)
+            if (Transform.Y < -1*Transform.Height)
             {
                 Alive = false;
             }

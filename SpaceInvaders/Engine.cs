@@ -14,6 +14,8 @@ namespace SpaceInvaders
     class Engine
     {
         public static Random rand = new Random();
+        public static int Width = 3840;
+        public static int Height = 2160;
 
         Graphics g; // Form rendering context 
         Bitmap backBuffer; //Backbuffer image
@@ -30,7 +32,7 @@ namespace SpaceInvaders
         public Engine(Graphics _g)
         {
             g = _g;
-            backBuffer = new Bitmap(3840, 2160);
+            backBuffer = new Bitmap(Width, Height);
             backBufferGraphics = Graphics.FromImage(backBuffer);
             gameObjects = new List<GameObject>();
 

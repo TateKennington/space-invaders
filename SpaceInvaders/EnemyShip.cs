@@ -36,7 +36,7 @@ namespace SpaceInvaders
 
         public override void Tick(Engine sender)
         {
-            if(CanFire && Engine.rand.Next(100) == 0)sender.SpawnBomb(Transform.X, Transform.Y + 100);
+            if(CanFire && Engine.rand.Next(100) == 0)sender.SpawnBomb(Transform.X, Transform.Y + Transform.Height);
         }
     }
 }

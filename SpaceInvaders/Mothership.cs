@@ -43,7 +43,7 @@ namespace SpaceInvaders
             //Move Right
             if(k == Keys.Right)
             {
-                Move(Math.Min(20, 3840-(Transform.X+Transform.Width)), 0);
+                Move(Math.Min(20, Engine.Width-(Transform.X+Transform.Width)), 0);
             }
 
             //Fire

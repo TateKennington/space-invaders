@@ -43,7 +43,7 @@ namespace SpaceInvaders
             Move(0, 30);
 
             //Set the bomb to dead if it's off screen
-            if (Transform.Y > 2160)
+            if (Transform.Y > Engine.Height)
             {
                 Alive = false;
             }
