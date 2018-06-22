@@ -30,6 +30,7 @@ namespace SpaceInvaders
         Graphics backBufferGraphics; //Backbuffer rendering context
         List<GameObject> gameObjects; //List of all gameobjects
         Mothership mship; //Player character
+        Fleet fleet;
         Missile[] missiles; //References to missiles in the resource pool
         List<Bomb> bombs;
         eState currentState;
@@ -56,9 +57,9 @@ namespace SpaceInvaders
             bombs = new List<Bomb>();
 
             //Test fleet
-            Fleet test = new Fleet(0, 0, 5, 5);
-            gameObjects.Add(test);
-            gameObjects.AddRange(test.GetShips());
+            fleet = new Fleet(0, 0, 5, 5);
+            gameObjects.Add(fleet);
+            gameObjects.AddRange(fleet.GetShips());
 
 
             //Create the player character
@@ -82,6 +83,9 @@ namespace SpaceInvaders
                     gameObjects[i].Tick(this);
                 }
                 CheckCollisions();
+
+                if (!mship.Alive) currentState = eState.Loss;
+                if (fleet.IsDead()) currentState = eState.Win;
             }
         }
 
@@ -145,6 +149,17 @@ namespace SpaceInvaders
                 }
             }
 
+            if (currentState == eState.Win)
+            {
+                backBufferGraphics.DrawString("You Win", new Font("sans", 100),
+                                               Brushes.White, 0, 0);
+            }
+
+            if (currentState == eState.Loss)
+            {
+                backBufferGraphics.DrawString("You Lose", new Font("sans", 100),
+                                               Brushes.White, 0, 0);
+            }
             //Draw the backbuffer to the front buffer
             g.DrawImage(backBuffer, 0, 0, 1024, 576);
         }

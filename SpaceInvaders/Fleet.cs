@@ -98,6 +98,18 @@ namespace SpaceInvaders
             }
         }
 
+        public bool IsDead()
+        {
+            foreach (EnemyShip[] row in EnemyShips)
+            {
+                foreach (EnemyShip enemyShip in row)
+                {
+                    if (enemyShip.Alive) return false;
+                }
+            }
+            return true;
+        }
+
         //public override void Render(Graphics g)
         //{
         //    foreach (EnemyShip[] row in EnemyShips)

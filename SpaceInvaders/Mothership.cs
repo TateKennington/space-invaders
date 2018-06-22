@@ -15,7 +15,10 @@ namespace SpaceInvaders
         /**
         Default constructor.
         */
-        public Mothership() : base() { }
+        public Mothership() : base()
+        {
+            ObjectType = eType.Mothership;
+        }
 
         /**
         Mothership constructer.
@@ -26,7 +29,10 @@ namespace SpaceInvaders
         _missiles: List of references to pooled missiles.
         _alive: Whether the ship is initially alive(default) or dead.
         */
-        public Mothership(int x, int y, int width, int height, bool _alive = true) : base(x, y, width, height, _alive){}
+        public Mothership(int x, int y, int width, int height, bool _alive = true) : base(x, y, width, height, _alive)
+        {
+            ObjectType = eType.Mothership;
+        }
 
         /**
         Keyboard input handler.
