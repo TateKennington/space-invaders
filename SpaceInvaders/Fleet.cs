@@ -58,7 +58,19 @@ namespace SpaceInvaders
 
         public override void Tick(Engine sender)
         {
-            if (x<0 || x + 200 * Columns > 3940) Direction *= -1;
+            int left = 4000, right = 0;
+            for (int i = 0; i < Columns; i++)
+            {
+                for (int j = 0; j < Rows; j++)
+                {
+                    if (EnemyShips[i][j].Alive)
+                    {
+                        left = Math.Min(left, x + i * 200);
+                        right = Math.Max(right, x + i * 200 + 100);
+                    }
+                }
+            }
+            if (left<0 || right > 3840) Direction *= -1;
             foreach (EnemyShip[] row in EnemyShips)
             {
                 foreach (EnemyShip enemyShip in row)
