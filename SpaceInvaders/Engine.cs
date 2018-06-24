@@ -34,6 +34,7 @@ namespace SpaceInvaders
         Missile[] missiles; //References to missiles in the resource pool
         List<Bomb> bombs;
         Menu main;
+        bool paused = false;
         eState currentState;
 
         /**
@@ -80,7 +81,7 @@ namespace SpaceInvaders
         */
         public void Tick()
         {
-            if (currentState == eState.Playing)
+            if (currentState == eState.Playing && !paused)
             {
                 //Update each game object
                 for (int i = 0; i < gameObjects.Count; i++)
@@ -121,11 +122,13 @@ namespace SpaceInvaders
         */
         public void KeyHandler(Keys k)
         {
+            if (currentState == eState.Playing && k == Keys.Space) paused = !paused;
+
             if (currentState == eState.MainMenu)
             {
                 main.KeyHandler(k, this);
             }
-            if (currentState == eState.Playing)
+            else if (currentState == eState.Playing && !paused)
             {
                 //Pass the event information to the mothership
                 mship.KeyHandler(k, this);
@@ -146,22 +149,26 @@ namespace SpaceInvaders
                 main.Render(backBufferGraphics);
             }
 
-            if (currentState == eState.Playing)
+            else if (currentState == eState.Playing)
             {
                 //Draw each gameobject
                 foreach (GameObject gameObject in gameObjects)
                 {
                     gameObject.Render(backBufferGraphics);
                 }
+                if (paused)
+                {
+                    backBufferGraphics.DrawString("Paused", new Font("sans", 100), Brushes.White, 0, 0);
+                }
             }
 
-            if (currentState == eState.Win)
+            else if (currentState == eState.Win)
             {
                 backBufferGraphics.DrawString("You Win", new Font("sans", 100),
                                                Brushes.White, 0, 0);
             }
 
-            if (currentState == eState.Loss)
+            else if (currentState == eState.Loss)
             {
                 backBufferGraphics.DrawString("You Lose", new Font("sans", 100),
                                                Brushes.White, 0, 0);
