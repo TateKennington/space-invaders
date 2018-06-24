@@ -11,12 +11,16 @@ namespace SpaceInvaders
     class Menu
     {
 
+        public delegate void Action(Engine sender);
+
         List<GUILabel> Items;
+        List<Action> Actions;
         int CurrentItem;
 
         public Menu()
         {
             Items = new List<GUILabel>();
+            Actions = new List<Action>();
             CurrentItem = 0;
         }
 
@@ -39,11 +43,14 @@ namespace SpaceInvaders
             else if (k == Keys.Up) CurrentItem = Items.Count - 1;
 
             if (k == Keys.Down) CurrentItem = (CurrentItem + 1) % Items.Count;
+
+            if (k == Keys.Space) Actions[CurrentItem](sender);
         }
 
-        public void Add(GUILabel l)
+        public void Add(GUILabel l, Action a)
         {
             Items.Add(l);
+            Actions.Add(a);
         }
     }
 }

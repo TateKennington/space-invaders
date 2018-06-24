@@ -17,7 +17,7 @@ namespace SpaceInvaders
         public static int Width = 3840;
         public static int Height = 2160;
 
-        enum eState
+        public enum eState
         {
             MainMenu,
             Playing, 
@@ -70,8 +70,8 @@ namespace SpaceInvaders
             currentState = eState.MainMenu;
 
             main = new Menu();
-            main.Add(new GUILabel("Start", 200, 0, 500, 100));
-            main.Add(new GUILabel("Quit", 200, 300, 500, 100));
+            main.Add(new GUILabel("Start", 200, 0, 500, 100), new Menu.Action(e => e.SetState(eState.Playing)));
+            main.Add(new GUILabel("Quit", 200, 300, 500, 100), new Menu.Action(e => e.Quit()));
 
         }
 
@@ -199,6 +199,17 @@ namespace SpaceInvaders
                     break;
                 }
             }
+        }
+
+        public void SetState(eState newState)
+        {
+            currentState = newState;
+        }
+
+        public void Quit()
+        {
+            Console.WriteLine("Do quit things");
+            //TODO: Implement quitting
         }
     }
 }
