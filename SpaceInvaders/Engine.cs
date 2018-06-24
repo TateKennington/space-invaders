@@ -33,6 +33,7 @@ namespace SpaceInvaders
         Fleet fleet;
         Missile[] missiles; //References to missiles in the resource pool
         List<Bomb> bombs;
+        Menu main;
         eState currentState;
 
         /**
@@ -67,6 +68,10 @@ namespace SpaceInvaders
             gameObjects.Add(mship);
 
             currentState = eState.MainMenu;
+
+            main = new Menu();
+            main.Add(new GUILabel("Start", 200, 0, 500, 100));
+            main.Add(new GUILabel("Quit", 200, 300, 500, 100));
 
         }
 
@@ -118,7 +123,7 @@ namespace SpaceInvaders
         {
             if (currentState == eState.MainMenu)
             {
-                if (k == Keys.Space) currentState = eState.Playing;
+                main.KeyHandler(k, this);
             }
             if (currentState == eState.Playing)
             {
@@ -136,8 +141,9 @@ namespace SpaceInvaders
 
             if(currentState == eState.MainMenu)
             {
-                backBufferGraphics.DrawString("Press Space to Start", new Font("sans", 100),
-                                               Brushes.White, 0, 0);
+                //backBufferGraphics.DrawString("Press Space to Start", new Font("sans", 100),
+                //                               Brushes.White, 0, 0);
+                main.Render(backBufferGraphics);
             }
 
             if (currentState == eState.Playing)
