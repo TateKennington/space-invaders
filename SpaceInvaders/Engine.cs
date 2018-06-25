@@ -36,6 +36,7 @@ namespace SpaceInvaders
         Menu main;
         bool paused = false;
         eState currentState;
+        int count = 0;
 
         /**
         Constructor for the engine.
@@ -74,6 +75,21 @@ namespace SpaceInvaders
             main.Add(new GUILabel("Start", 200, 0, 500, 100), new Menu.Action(e => e.SetState(eState.Playing)));
             main.Add(new GUILabel("Quit", 200, 300, 500, 100), new Menu.Action(e => e.Quit()));
 
+        }
+
+        public void Reset()
+        {
+            currentState = eState.MainMenu;
+            mship.Alive = true;
+            fleet.Reset();
+            foreach(Bomb b in bombs)
+            {
+                b.Alive = false;
+            }
+            foreach(Missile m in missiles)
+            {
+                m.Alive = false;
+            }
         }
 
         /**
@@ -166,12 +182,24 @@ namespace SpaceInvaders
             {
                 backBufferGraphics.DrawString("You Win", new Font("sans", 100),
                                                Brushes.White, 0, 0);
+                count++;
+                if (count > 180)
+                {
+                    count = 0;
+                    Reset();
+                }
             }
 
             else if (currentState == eState.Loss)
             {
                 backBufferGraphics.DrawString("You Lose", new Font("sans", 100),
                                                Brushes.White, 0, 0);
+                count++;
+                if (count > 180)
+                {
+                    count = 0;
+                    Reset();
+                }
             }
             //Draw the backbuffer to the front buffer
             g.DrawImage(backBuffer, 0, 0, 1024, 576);
@@ -215,8 +243,7 @@ namespace SpaceInvaders
 
         public void Quit()
         {
-            Console.WriteLine("Do quit things");
-            //TODO: Implement quitting
+            Application.Exit();
         }
     }
 }

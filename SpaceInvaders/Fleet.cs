@@ -110,6 +110,24 @@ namespace SpaceInvaders
             return true;
         }
 
+        public void Reset()
+        {
+            Direction = 1;
+            for (int i = 0; i < Columns; i++)
+            {
+                for (int j = 0; j < Rows; j++)
+                {
+                    EnemyShips[i][j].SetPosition(x + 200 * i, y + 200 * j);
+                    EnemyShips[i][j].CanFire = false;
+                    EnemyShips[i][j].Alive = true;
+                }
+            }
+            for (int i = 0; i < Columns; i++)
+            {
+                EnemyShips[i][Rows - 1].CanFire = true;
+            }
+        }
+
         //public override void Render(Graphics g)
         //{
         //    foreach (EnemyShip[] row in EnemyShips)

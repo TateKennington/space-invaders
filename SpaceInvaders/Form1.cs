@@ -30,7 +30,7 @@ namespace SpaceInvaders
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            //Pas input information to the game engine
+            //Pass input information to the game engine
             game.KeyHandler(e.KeyCode);
         }
     }
