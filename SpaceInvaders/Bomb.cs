@@ -27,9 +27,8 @@ namespace SpaceInvaders
 
         public override void OnCollide(GameObject other)
         {
-            if (other.ObjectType == eType.Mothership)
+            if (other.ObjectType == eType.Mothership || other.ObjectType == eType.Missile)
             {
-                other.Alive = false;
                 Alive = false;
             }
         }

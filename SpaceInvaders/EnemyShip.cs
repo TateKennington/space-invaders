@@ -38,5 +38,13 @@ namespace SpaceInvaders
         {
             if(CanFire && Engine.rand.Next(100) == 0)sender.SpawnBomb(Transform.X, Transform.Y + Transform.Height);
         }
+
+        public override void OnCollide(GameObject other)
+        {
+            if(other.ObjectType == eType.Missile)
+            {
+                Alive = false;
+            }
+        }
     }
 }

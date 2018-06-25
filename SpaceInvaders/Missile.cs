@@ -14,14 +14,19 @@ namespace SpaceInvaders
         /**
         Constructors
         */
-        public Missile() : base(){}
-        public Missile(int x, int y, int width, int height) : base(x, y, width, height){}
+        public Missile() : base()
+        {
+            ObjectType = eType.Missile;
+        }
+        public Missile(int x, int y, int width, int height) : base(x, y, width, height)
+        {
+            ObjectType = eType.Missile;
+        }
 
         public override void OnCollide(GameObject other)
         {
             if (other.ObjectType == eType.Enemy)
             {
-                other.Alive = false;
                 Alive = false;
             }
         }
