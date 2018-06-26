@@ -39,7 +39,7 @@ namespace SpaceInvaders
             if (!Alive) return;
 
             //Move Down
-            Move(0, 30);
+            Move(0, Engine.Height/60);
 
             //Set the bomb to dead if it's off screen
             if (Transform.Y > Engine.Height)

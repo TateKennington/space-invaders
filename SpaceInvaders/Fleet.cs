@@ -34,7 +34,7 @@ namespace SpaceInvaders
                 EnemyShips[i] = new EnemyShip[Rows];
                 for(int j = 0; j<Rows; j++)
                 {
-                    EnemyShips[i][j] = new EnemyShip(x + 200 * i, y + 200 * j, 100, 100);
+                    EnemyShips[i][j] = new EnemyShip(x + Engine.Width/25 * i, y + Engine.Width/25 * j, Engine.Width/50, Engine.Width/50);
                 }
             }
             for(int i = 0; i<Columns; i++)
@@ -65,8 +65,8 @@ namespace SpaceInvaders
                 {
                     if (EnemyShips[i][j].Alive)
                     {
-                        left = Math.Min(left, x + i * 200);
-                        right = Math.Max(right, x + i * 200 + 100);
+                        left = Math.Min(left, x + i * Engine.Width/25);
+                        right = Math.Max(right, x + i * Engine.Width/25 + Engine.Width/50);
                     }
                 }
             }
@@ -117,7 +117,7 @@ namespace SpaceInvaders
             {
                 for (int j = 0; j < Rows; j++)
                 {
-                    EnemyShips[i][j].SetPosition(x + 200 * i, y + 200 * j);
+                    EnemyShips[i][j].SetPosition(x + Engine.Width/25 * i, y + Engine.Width/25 * j);
                     EnemyShips[i][j].CanFire = false;
                     EnemyShips[i][j].Alive = true;
                 }

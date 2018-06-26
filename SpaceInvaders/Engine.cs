@@ -53,27 +53,27 @@ namespace SpaceInvaders
             missiles = new Missile[15];
             for(int i = 0; i<15; i++)
             {
-                missiles[i] = new Missile(0,0,100,100);
+                missiles[i] = new Missile(0,0,Width/50, Width/50);
                 gameObjects.Add(missiles[i]);
             }
 
             bombs = new List<Bomb>();
 
             //Test fleet
-            fleet = new Fleet(0, 0, 5, 5);
+            fleet = new Fleet(Width/2, 0, 5, 5);
             gameObjects.Add(fleet);
             gameObjects.AddRange(fleet.GetShips());
 
 
             //Create the player character
-            mship = new Mothership(2000,1800,100,100);
+            mship = new Mothership(Width/2 - Width/100, Height - Width/25 ,Width/50, Width/50);
             gameObjects.Add(mship);
 
             currentState = eState.MainMenu;
 
             main = new Menu();
-            main.Add(new GUILabel("Start", 200, 0, 500, 100), new Menu.Action(e => e.SetState(eState.Playing)));
-            main.Add(new GUILabel("Quit", 200, 300, 500, 100), new Menu.Action(e => e.Quit()));
+            main.Add(new GUILabel("Start", Width/2, Height/2, Width/10, Height/50), new Menu.Action(e => e.SetState(eState.Playing)));
+            main.Add(new GUILabel("Quit", Width/2, Height/2 + Height/25, Width/10, Height/50), new Menu.Action(e => e.Quit()));
 
         }
 
@@ -174,14 +174,14 @@ namespace SpaceInvaders
                 }
                 if (paused)
                 {
-                    backBufferGraphics.DrawString("Paused", new Font("sans", 100), Brushes.White, 0, 0);
+                    backBufferGraphics.DrawString("Paused", new Font("sans", Width/50), Brushes.White, 0, 0);
                 }
             }
 
             else if (currentState == eState.Win)
             {
-                backBufferGraphics.DrawString("You Win", new Font("sans", 100),
-                                               Brushes.White, 0, 0);
+                backBufferGraphics.DrawString("You Win", new Font("sans", Width/50),
+                                               Brushes.White, Width/2 - 3.5f*Width/50, Height/2 - Width/50);
                 count++;
                 if (count > 180)
                 {
@@ -192,8 +192,8 @@ namespace SpaceInvaders
 
             else if (currentState == eState.Loss)
             {
-                backBufferGraphics.DrawString("You Lose", new Font("sans", 100),
-                                               Brushes.White, 0, 0);
+                backBufferGraphics.DrawString("You Lose", new Font("sans", Width / 50),
+                                               Brushes.White, Width / 2 - 3.5f*Width/50, Height / 2 - Width / 50);
                 count++;
                 if (count > 180)
                 {
@@ -216,7 +216,7 @@ namespace SpaceInvaders
                     return;
                 }
             }
-            Bomb b = new Bomb(x, y, 100, 100);
+            Bomb b = new Bomb(x, y, Width/50, Width/50);
             bombs.Add(b);
             gameObjects.Add(b);
         }
