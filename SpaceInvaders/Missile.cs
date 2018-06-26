@@ -11,6 +11,8 @@ namespace SpaceInvaders
     */
     class Missile : GameObject
     {
+        int Speed = -Engine.Height / 60;
+
         /**
         Constructors
         */
@@ -37,7 +39,7 @@ namespace SpaceInvaders
             if (!Alive) return;
 
             //Move up
-            Move(0, -Engine.Height/60);
+            Move(0, Speed);
 
             //Set the missile to dead if it's off screen
             if (Transform.Y < -1*Transform.Height)

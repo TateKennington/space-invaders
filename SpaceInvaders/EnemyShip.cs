@@ -8,6 +8,7 @@ namespace SpaceInvaders
 {
     class EnemyShip : GameObject
     {
+        int FireChance = 100;
 
         public bool CanFire { get; set; }
 
@@ -36,7 +37,8 @@ namespace SpaceInvaders
 
         public override void Tick(Engine sender)
         {
-            if(CanFire && Engine.rand.Next(100) == 0)sender.SpawnBomb(Transform.X, Transform.Y + Transform.Height);
+            if(CanFire && Engine.rand.Next(FireChance) == 0)
+                sender.SpawnBomb(Transform.X, Transform.Y + Transform.Height);
         }
 
         public override void OnCollide(GameObject other)

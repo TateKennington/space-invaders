@@ -11,6 +11,8 @@ namespace SpaceInvaders
     */
     class Bomb : GameObject
     {
+        int Speed = Engine.Height / 60;
+
         /**
         Constructors
         */
@@ -39,7 +41,7 @@ namespace SpaceInvaders
             if (!Alive) return;
 
             //Move Down
-            Move(0, Engine.Height/60);
+            Move(0, Speed);
 
             //Set the bomb to dead if it's off screen
             if (Transform.Y > Engine.Height)

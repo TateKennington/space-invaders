@@ -12,6 +12,8 @@ namespace SpaceInvaders
     */
     class Mothership : GameObject
     {
+        int Speed = Engine.Width/120;
+
         /**
         Default constructor.
         */
@@ -43,13 +45,13 @@ namespace SpaceInvaders
             //Move left
             if(k == Keys.Left)
             {
-                Move(-1* Math.Min(20,Transform.X), 0);
+                Move(-1* Math.Min(Speed,Transform.X), 0);
             }
 
             //Move Right
             if(k == Keys.Right)
             {
-                Move(Math.Min(20, Engine.Width-(Transform.X+Transform.Width)), 0);
+                Move(Math.Min(Speed, Engine.Width-(Transform.X+Transform.Width)), 0);
             }
 
             //Fire
