@@ -69,7 +69,7 @@ namespace SpaceInvaders
         */
         void Fire(Engine sender)
         {
-            sender.SpawnMissile(Transform.X+Transform.Width/2 - Engine.Width/100, Transform.Y - Transform.Height);
+            sender.SpawnMissile(Transform.X+Transform.Width/2 - Engine.Width/200, Transform.Y - Transform.Height);
         }
 
         public override void OnCollide(GameObject other)

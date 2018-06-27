@@ -53,7 +53,7 @@ namespace SpaceInvaders
             missiles = new Missile[15];
             for(int i = 0; i<15; i++)
             {
-                missiles[i] = new Missile(0,0,Width/50, Width/50);
+                missiles[i] = new Missile(0,0,Width/100, Width/50);
                 gameObjects.Add(missiles[i]);
             }
 
@@ -216,7 +216,7 @@ namespace SpaceInvaders
                     return;
                 }
             }
-            Bomb b = new Bomb(x, y, Width/50, Width/50);
+            Bomb b = new Bomb(x, y, Width/100, Width/50);
             bombs.Add(b);
             gameObjects.Add(b);
         }
