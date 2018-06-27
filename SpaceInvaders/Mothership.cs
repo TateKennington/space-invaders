@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace SpaceInvaders
         public Mothership() : base()
         {
             ObjectType = eType.Mothership;
+            SetSprite(Image.FromFile("../../Assets/Mothership.bmp"));
         }
 
         /**
@@ -34,6 +36,7 @@ namespace SpaceInvaders
         public Mothership(int x, int y, int width, int height, bool _alive = true) : base(x, y, width, height, _alive)
         {
             ObjectType = eType.Mothership;
+            SetSprite(Image.FromFile("../../Assets/Mothership.bmp"));
         }
 
         /**
@@ -66,7 +69,7 @@ namespace SpaceInvaders
         */
         void Fire(Engine sender)
         {
-            sender.SpawnMissile(Transform.X, Transform.Y - Transform.Height);
+            sender.SpawnMissile(Transform.X+Transform.Width/2 - Engine.Width/100, Transform.Y - Transform.Height);
         }
 
         public override void OnCollide(GameObject other)

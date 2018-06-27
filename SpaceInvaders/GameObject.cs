@@ -26,6 +26,7 @@ namespace SpaceInvaders
         protected Rectangle Transform; //The objects position and size information
         public bool Alive { get; set; } //Life flag
         public eType ObjectType { get; set; } //Object type flag       
+        Image Sprite;
 
         /**
         Default constructor.
@@ -36,6 +37,7 @@ namespace SpaceInvaders
             Transform = new Rectangle(0, 0, 0, 0);
             Alive = _alive;
             ObjectType = eType.Default;
+            SetSprite(Image.FromFile("../../Assets/Default.bmp"));
         }
 
         /**
@@ -51,6 +53,7 @@ namespace SpaceInvaders
             Transform = new Rectangle(x, y, width, height);
             Alive = _alive;
             ObjectType = eType.Default;
+            SetSprite(Image.FromFile("../../Assets/Default.bmp"));
         }
 
         /**
@@ -80,7 +83,8 @@ namespace SpaceInvaders
         {
             if (!Alive) return;
 
-            g.DrawRectangle(new Pen(Color.White), Transform);
+            //g.DrawRectangle(new Pen(Color.White), Transform);
+            g.DrawImage(Sprite, Transform);
         }
 
         /**
@@ -103,6 +107,11 @@ namespace SpaceInvaders
         {
             Transform.X = x;
             Transform.Y = y;
+        }
+
+        public void SetSprite(Image _Sprite)
+        {
+            Sprite = _Sprite;
         }
     }
 }

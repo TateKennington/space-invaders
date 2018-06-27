@@ -66,7 +66,7 @@ namespace SpaceInvaders
 
 
             //Create the player character
-            mship = new Mothership(Width/2 - Width/100, Height - Width/25 ,Width/50, Width/50);
+            mship = new Mothership(Width/2 - Width/100, Height - Width/25 ,Width/25, Width/50);
             gameObjects.Add(mship);
 
             currentState = eState.MainMenu;
