@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,13 @@ namespace SpaceInvaders
         {
             Alive = true;
             ObjectType = eType.Enemy;
+            SetSprite(new Bitmap("../../Assets/Bomb.bmp"));
         }
         public Bomb(int x, int y, int width, int height) : base(x, y, width, height)
         {
             Alive = true;
             ObjectType = eType.Enemy;
+            SetSprite(new Bitmap("../../Assets/Bomb.bmp"));
         }
 
         public override void OnCollide(GameObject other)
