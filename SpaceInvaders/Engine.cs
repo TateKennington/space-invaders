@@ -28,7 +28,9 @@ namespace SpaceInvaders
 
         public enum eSound
         {
-            Fire
+            Fire,
+            Explosion,
+            Bomb
         }
 
         Graphics g; // Form rendering context 
@@ -55,7 +57,7 @@ namespace SpaceInvaders
             backBuffer = new Bitmap(Width, Height);
             backBufferGraphics = Graphics.FromImage(backBuffer);
             gameObjects = new List<GameObject>();
-            soundEffects = new SoundPlayer[1];
+            soundEffects = new SoundPlayer[3];
 
             //Initialize the pool of missiles
             missiles = new Missile[15];
@@ -89,8 +91,10 @@ namespace SpaceInvaders
         public void LoadSounds()
         {
             soundEffects[(int)eSound.Fire] = new SoundPlayer("C:/Windows/media/Windows Ding.wav");
+            soundEffects[(int)eSound.Bomb] = new SoundPlayer("C:/Windows/media/Windows Ding.wav");
+            soundEffects[(int)eSound.Explosion] = new SoundPlayer("C:/Windows/media/Windows Ding.wav");
 
-            foreach(SoundPlayer sp in soundEffects)
+            foreach (SoundPlayer sp in soundEffects)
             {
                 sp.Load();
             }

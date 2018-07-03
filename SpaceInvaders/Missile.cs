@@ -34,6 +34,7 @@ namespace SpaceInvaders
             {
                 Alive = false;
             }
+            //TODO: Play Explosion sound
         }
 
         //Updates the missiles state by one step
