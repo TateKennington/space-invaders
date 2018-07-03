@@ -12,8 +12,19 @@ namespace SpaceInvaders
     /**
     Handles all the games functionality, rendering, updating, etc.
     */
-    class Engine
+
+    public sealed class Engine
     {
+        private static Engine instance = null;
+
+        public static Engine Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         public static Random rand = new Random();
         public static int Width = 3840;
         public static int Height = 2160;
@@ -53,6 +64,8 @@ namespace SpaceInvaders
         */
         public Engine(Graphics _g)
         {
+            instance = this;
+
             g = _g;
             backBuffer = new Bitmap(Width, Height);
             backBufferGraphics = Graphics.FromImage(backBuffer);

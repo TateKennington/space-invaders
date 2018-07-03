@@ -33,8 +33,8 @@ namespace SpaceInvaders
             if (other.ObjectType == eType.Enemy)
             {
                 Alive = false;
+                Engine.Instance.PlaySound(Engine.eSound.Explosion);
             }
-            //TODO: Play Explosion sound
         }
 
         //Updates the missiles state by one step
