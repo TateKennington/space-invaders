@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -234,6 +235,11 @@ namespace SpaceInvaders
                     break;
                 }
             }
+        }
+
+        public void PlaySound(string fileName)
+        {
+            new SoundPlayer(fileName).Play();
         }
 
         public void SetState(eState newState)
