@@ -26,6 +26,11 @@ namespace SpaceInvaders
             Loss
         }
 
+        public enum eSound
+        {
+            Fire
+        }
+
         Graphics g; // Form rendering context 
         Bitmap backBuffer; //Backbuffer image
         Graphics backBufferGraphics; //Backbuffer rendering context
@@ -38,6 +43,7 @@ namespace SpaceInvaders
         bool paused = false;
         eState currentState;
         int count = 0;
+        SoundPlayer[] soundEffects;
 
         /**
         Constructor for the engine.
@@ -49,6 +55,7 @@ namespace SpaceInvaders
             backBuffer = new Bitmap(Width, Height);
             backBufferGraphics = Graphics.FromImage(backBuffer);
             gameObjects = new List<GameObject>();
+            soundEffects = new SoundPlayer[1];
 
             //Initialize the pool of missiles
             missiles = new Missile[15];
@@ -76,6 +83,17 @@ namespace SpaceInvaders
             main.Add(new GUILabel("Start", Width/2, Height/2, Width/10, Height/50), new Menu.Action(e => e.SetState(eState.Playing)));
             main.Add(new GUILabel("Quit", Width/2, Height/2 + Height/25, Width/10, Height/50), new Menu.Action(e => e.Quit()));
 
+            LoadSounds();
+        }
+
+        public void LoadSounds()
+        {
+            soundEffects[(int)eSound.Fire] = new SoundPlayer("C:/Windows/media/Windows Ding.wav");
+
+            foreach(SoundPlayer sp in soundEffects)
+            {
+                sp.Load();
+            }
         }
 
         public void Reset()
@@ -237,9 +255,9 @@ namespace SpaceInvaders
             }
         }
 
-        public void PlaySound(string fileName)
+        public void PlaySound(eSound sound)
         {
-            new SoundPlayer(fileName).Play();
+            soundEffects[(int)sound].Play();
         }
 
         public void SetState(eState newState)

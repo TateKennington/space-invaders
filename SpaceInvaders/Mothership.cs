@@ -69,7 +69,7 @@ namespace SpaceInvaders
         */
         void Fire(Engine sender)
         {
-            sender.PlaySound("C:/Windows/media/Windows Ding.wav");
+            sender.PlaySound(Engine.eSound.Fire);
             sender.SpawnMissile(Transform.X+Transform.Width/2 - Engine.Width/200, Transform.Y - Transform.Height);
         }
 
