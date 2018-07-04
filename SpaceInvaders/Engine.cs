@@ -57,6 +57,7 @@ namespace SpaceInvaders
         eState currentState;
         int count = 0;
         SoundPlayer[] soundEffects;
+        BonusShip bonusShip;
 
         /**
         Constructor for the engine.
@@ -97,6 +98,9 @@ namespace SpaceInvaders
             main = new Menu();
             main.Add(new GUILabel("Start", Width/2, Height/2, Width/10, Height/50), new Menu.Action(e => e.SetState(eState.Playing)));
             main.Add(new GUILabel("Quit", Width/2, Height/2 + Height/25, Width/10, Height/50), new Menu.Action(e => e.Quit()));
+
+            bonusShip = new BonusShip(-100, 0, 100, 100);
+            gameObjects.Add(bonusShip);
 
             LoadSounds();
         }
@@ -269,6 +273,15 @@ namespace SpaceInvaders
                     missile.SetPosition(x, y);
                     break;
                 }
+            }
+        }
+
+        void SpawnBonusShip()
+        {
+            if (!bonusShip.Alive)
+            {
+                bonusShip.SetPosition(-100, 0);
+                bonusShip.Alive = true;
             }
         }
 
